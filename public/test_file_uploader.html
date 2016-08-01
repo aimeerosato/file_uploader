@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+</head>
+<link href="style.css" rel="stylesheet">
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script> 
+<script src="../bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="test_file_upload.js"></script>
+
+<body>
+  <div class="flex-container"> 
+    <h1>Upload Photo</h1>
+    <div ng-app="fileUpload" ng-controller="MyCtrl">
+      <div id="loading" ng-if="isLoading">
+        <div class="spinner">
+          <div class="dot1"></div>
+          <div class="dot2"></div>
+        </div>
+      </div>
+      <div class="actualPhoto" ng-if="!isLoading">
+        <img ng-if="imageUrl" ng-src="{{imageUrl}}" />
+        <img ng-if="!imageUrl" src="question-mark.png" id="placeholder" /> 
+      </div>
+      <br>
+      <div class="buttonToChangePhoto" class="item">
+        <a>
+          <span class="flex-container">
+            <button ngf-select="upload($file)" accept="image/*" ngf-max-size="10MB" ng-model="file" name="file" ngf-pattern="'image/*'" class="fancy radius button">
+              <span ng-if="!imageUrl">Add Photo</span>
+              <span ng-show="imageUrl">Change Photo</span>
+            </button>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
